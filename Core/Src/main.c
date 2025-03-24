@@ -110,14 +110,10 @@ int main(void) {
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1) {
-        // HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-        // HAL_Delay(600);
-
-        // printf("Hola mundo\n");
 
         /* USER CODE END WHILE */
-
         /* USER CODE BEGIN 3 */
+        
         /* Application Update */
         app_update();
     }
