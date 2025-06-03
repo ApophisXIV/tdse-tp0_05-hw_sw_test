@@ -681,11 +681,11 @@ def get_openocd(cubeide_path):
 
     openocd_name = f"{'openocd.exe' if os.name == 'nt' else 'openocd'}"
     template_openocd_server = (
-        "{cubeide}+/plugins/+{latest_openocd_server}/tools/bin/" + openocd_name
+        "{cubeide}/plugins/{latest_openocd_server}/tools/bin/" + openocd_name
     )
 
     template_openocd_script_path = (
-        "{cubeide}+/plugins/+{latest_openocd_script}/resources/openocd/st_scripts"
+        "{cubeide}/plugins/{latest_openocd_script}/resources/openocd/st_scripts"
     )
 
     for plugin_path in plugins_paths:
@@ -889,7 +889,7 @@ def paginate_list(data_list, columns=5, rows_per_page=20):
 
 def target_print_table(target_db: dict):
     mcu_list = [(i, mcu) for i, mcu in enumerate(target_db.keys())]
-    mostrar_paginado(mcu_list, 5, 25)
+    paginate_list(mcu_list, 5, 25)
 
 
 def is_in_range_target_db(number: str, target_db):
@@ -940,7 +940,7 @@ if __name__ == "__main__":
     print(prRed(">>> [REMOVE]") +
           " - Se elimina de la lista de compilacion y linking syscalls.c")
 
-    # add_linking_options(GCC_ARM_NONE_EABI_LINKER_OPTIONS)
+    add_linking_options(GCC_ARM_NONE_EABI_LINKER_OPTIONS)
     print(prGreen(">>> [ADD]   ") +
           " - Se agregan flags de linking para rdimon")
     print(prGreen(">>> [ADD]   ") +
@@ -959,6 +959,8 @@ if __name__ == "__main__":
     print(prGreen(">>> [ADD]   ") + " - Se configura el servidor de OpenOCD")
     print(prGreen(">>> [ADD]   ") +
           " - Se configura monitor en modo semihosting")
+    
+    # add_compiler_path()
 
 
 # PATH_SETTINGS_JSON = ".vscode/settings.json"  # Opcional si tiene instalada la extension "Task Buttons"
