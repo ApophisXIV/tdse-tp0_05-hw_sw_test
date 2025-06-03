@@ -70,12 +70,12 @@ uint32_t g_task_a_cnt;
 void task_a_init(void *parameters)
 {
 	/* Print out: Task Initialized */
-	LOGGER_LOG("  %s is running - %s\r\n", GET_NAME(task_a_init), p_task_a);
+	LOGGER_LOG("\t%s is running - %s\r\n", GET_NAME(task_a_init), p_task_a);
 
 	g_task_a_cnt = G_TASK_A_CNT_INI;
 
 	/* Print out: Task execution counter */
-	LOGGER_LOG("   %s = %lu\r\n", GET_NAME(g_task_a_cnt), g_task_a_cnt);
+	LOGGER_LOG("\t%s = %lu\r\n", GET_NAME(g_task_a_cnt), g_task_a_cnt);
 }
 
 void task_a_update(void *parameters)
@@ -98,10 +98,10 @@ void task_a_update(void *parameters)
 	g_task_a_cnt++;
 
 	/* Print out: Application Update */
-	LOGGER_LOG("  %s is running - %s\r\n", GET_NAME(task_a_update), p_task_a);
+	LOGGER_LOG("\t%s is running - %s\r\n", GET_NAME(task_a_update), p_task_a);
 
 	/* Print out: Task execution counter */
-	LOGGER_LOG("   %s = %lu\r\n", GET_NAME(g_task_a_cnt), g_task_a_cnt);
+	LOGGER_LOG("\t%s = %lu\r\n", GET_NAME(g_task_a_cnt), g_task_a_cnt);
 
 	/* Blocking and Non-Blocking in Node.js (https://www.geeksforgeeks.org/) */
 	/*

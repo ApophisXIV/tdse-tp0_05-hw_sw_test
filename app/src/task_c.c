@@ -66,13 +66,13 @@ volatile uint32_t g_task_c_tick_cnt;
 void task_c_init(void *parameters)
 {
 	/* Print out: Task Initialized */
-	LOGGER_LOG("  %s is running - %s\r\n", GET_NAME(task_c_init), p_task_c);
+	LOGGER_LOG("\t%s is running - %s\r\n", GET_NAME(task_c_init), p_task_c);
 
 	g_task_c_cnt = G_TASK_C_CNT_INI;
 	g_task_c_tick_cnt = G_TASK_C_TICK_CNT_INI;
 
 	/* Print out: Task execution counter */
-	LOGGER_LOG("   %s = %lu\r\n", GET_NAME(g_task_c_cnt), g_task_c_cnt);
+	LOGGER_LOG("\t%s = %lu\r\n", GET_NAME(g_task_c_cnt), g_task_c_cnt);
 }
 
 void task_c_update(void *parameters)
@@ -83,10 +83,10 @@ void task_c_update(void *parameters)
 	g_task_c_cnt++;
 
 	/* Print out: Application Update */
-	LOGGER_LOG("  %s is running - %s\r\n", GET_NAME(task_c_update), p_task_c);
+	LOGGER_LOG("\t%s is running - %s\r\n", GET_NAME(task_c_update), p_task_c);
 
 	/* Print out: Task Updated and execution counter */
-	LOGGER_LOG("   %s = %lu\r\n", GET_NAME(g_task_c_cnt), g_task_c_cnt);
+	LOGGER_LOG("\t%s = %lu\r\n", GET_NAME(g_task_c_cnt), g_task_c_cnt);
 
 	/* Protect shared resource (g_task_c_tick_cnt) */
 	__asm("CPSID i");	/* disable interrupts*/
@@ -121,3 +121,28 @@ void task_c_update(void *parameters)
 }
 
 /********************** end of file ******************************************/
+# ---------------------------------------------------------------------------- #
+# Configuracion printf en semihosting
+# ---------------------------------------------------------------------------- #
+# Incluimos la biblioteca rdimon que le indica que podemos usar las systemcalls
+# pero estas son manejadas por el debugger controlado por el HOST
+set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -lrdimon")
+set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -specs=rdimon.specs")
+# Excluimos las llamadas del sistema (evitamos redefinir funciones basicas
+# como _write, _read, _open, _kill, _etc) y prevenimos posibles errores de 
+# uso de las syscalls por parte del TARGET
+set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} --specs=nosys.specs")
+# ---------------------------------------------------------------------------- #
+
+# ---------------------------------------------------------------------------- #
+# Configuracion printf en semihosting
+# ---------------------------------------------------------------------------- #
+# Incluimos la biblioteca rdimon que le indica que podemos usar las systemcalls
+# pero estas son manejadas por el debugger controlado por el HOST
+set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -lrdimon")
+set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -specs=rdimon.specs")
+# Excluimos las llamadas del sistema (evitamos redefinir funciones basicas
+# como _write, _read, _open, _kill, _etc) y prevenimos posibles errores de 
+# uso de las syscalls por parte del TARGET
+set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} --specs=nosys.specs")
+# ---------------------------------------------------------------------------- #
