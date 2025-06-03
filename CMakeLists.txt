@@ -42,10 +42,9 @@ add_subdirectory(cmake/stm32cubemx)
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined library search paths
-    app/
 )
 
-# Add sources to executable (all C fil  es in app/src)
+# Add sources to executable (all C files in app/src)
 file(GLOB APP_SOURCES "app/src/*.c")
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE 
     ${APP_SOURCES}
