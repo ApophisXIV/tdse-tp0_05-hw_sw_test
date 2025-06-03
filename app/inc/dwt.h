@@ -53,11 +53,11 @@ extern "C" {
 /*!< TRCENA: Enable trace and debug block DEMCR (Debug Exception and Monitor Control Register) */
 /*!< DWT Cycle Counter register */
 /*!< CYCCNTENA bit in DWT_CONTROL register */
-#define cycle_counter_init() ({\
+#define cycle_counter_init() do{\
 	CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;	/* enable DWT hardware */\
 	DWT->CYCCNT = 0;								/* reset cycle counter */\
 	DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;			/* start counting */\
- 	})
+ 	}while(0)
 
 /* reset cycle counter */
 /*!< DWT Cycle Counter register */
